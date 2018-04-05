@@ -16,9 +16,6 @@ func check(e error) {
 		panic(e)
 	}
 }
-//func main(){
-//	StreamFileChunks()
-//}
 func StreamFileChunks() {
 	loginit.InitializeLogger()
 	var log = logging.MustGetLogger("example")
@@ -66,17 +63,6 @@ func StreamFileChunks() {
 		scanSlice = append(scanSlice, temp)
 		log.Debug("New scan slice snapshot: ",string(scanSlice))
 	}
-
-
-//	offset := 5
-//	for 
-//	o2, err := f.Seek(6, 0)
-//	check(err)
-//	b2 := make([]byte, 2)
-//	n2, err := f.Read(b2)
-//	check(err)
-//	log.Debug(n2,"bytes @ ",o2,": ",string(b2))
-//	fmt.Printf("%d bytes @ %d: %s\n", n2, o2, string(b2))
 
 	f.Close()
 
