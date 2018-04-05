@@ -16,7 +16,7 @@ func check(e error) {
 		panic(e)
 	}
 }
-func StreamFileChunks() {
+func StreamFileChunks(scanWidth int, incrementCount int, filePath string) {
 
 	//get the logging engine going
 	loginit.InitializeLogger()
@@ -27,7 +27,7 @@ func StreamFileChunks() {
 	//This will be the number of bytes the slice will have in memory
 	//at one time. Represents the size of the scan window.
 	//Larger scan window will collect more data, but use more memory
-	scanWidth := 25
+	//scanWidth := 25
 
 	//Set the increment count.
 	//This is the number of bytes that the window will move each cycle
@@ -37,13 +37,13 @@ func StreamFileChunks() {
 	//Latency multiplies this effect
 	//Larger numbers represent more speed, but may lead to missed data
 	//If this is set greater than the scan width, bad things happen
-	incrementCount := 5
+	//incrementCount := 5
 
 	//load the test file
 	//TODO paramaterize this
-	dat, err := ioutil.ReadFile("/tmp/dat")
+	dat, err := ioutil.ReadFile(filePath)
 	check(err)
-	rawFile, err := os.Open("/tmp/dat")
+	rawFile, err := os.Open(filePath)
 	check(err)
 	log.Info("File opened")
 	log.Debugf("File size: %d",len(dat))
